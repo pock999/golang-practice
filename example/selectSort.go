@@ -24,7 +24,6 @@ func main() {
 func sort(arr []uint8) []uint8 {
 	fmt.Println("原始：", arr);
 
-	var temp uint8;
 	var i, j, length int;
 
 	i = 0;
@@ -35,9 +34,7 @@ func sort(arr []uint8) []uint8 {
 		j = i;
 		for (j<length) {
 			if (arr[i] > arr[j]) {
-				temp = arr[i];
-				arr[i] = arr[j];
-				arr[j] = temp;
+				swap(&arr[i], &arr[j]);
 			}
 			j++;
 		}
@@ -46,4 +43,10 @@ func sort(arr []uint8) []uint8 {
 	fmt.Println("afete sort：", arr);
 	return arr;
 	
+}
+
+func swap(x, y *uint8) {
+	temp := *x;
+	*x = *y;
+	*y = temp;
 }
