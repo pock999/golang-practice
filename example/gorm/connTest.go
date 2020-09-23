@@ -4,21 +4,13 @@ package main
 
 import (
 	"fmt"
-	"time"
 	"github.com/jinzhu/gorm"
 	// "github.com/jinzhu/gorm/dialects/mysql"
 
 	_ "github.com/go-sql-driver/mysql"
-)
 
-type User struct {
-	Id uint `gorm:"AUTO_INCREMENT"`
-	Name string `gorm:"size:50"`
-	Age int `gorm:"size:3"`
-	Birthday  *time.Time
-	Email string `gorm:"type:varchar(50);unique_index"`
-	PassWord string `gorm:"type:varchar(25)"`
-}
+	"app/model"
+)
 
 var db *gorm.DB
 
@@ -32,17 +24,17 @@ func main() {
 	// 自動遷移資料結構
 	// 默認表名（複數）
 	// 取消默認表明複數 db.SingularTable(true)
-	db.AutoMigrate(&User{})
+	db.AutoMigrate(&model.User{})
 
 	// 唯一索引
-	db.Model(&User{}).AddUniqueIndex("name_email", "id", "name","email")
+	db.Model(&model.User{}).AddUniqueIndex("name_email", "id", "name","email")
 
 	// 新增紀錄
-	db.Create(&User{Name:"bgbiao",Age:18,Email:"bgbiao@bgbiao.top"})
-	db.Create(&User{Name:"xxb",Age:18,Email:"xxb@bgbiao.top"})
+	db.Create(&model.User{Name:"bgbiao",Age:18,Email:"bgbiao@bgbiao.top"})
+	db.Create(&model.User{Name:"xxb",Age:18,Email:"xxb@bgbiao.top"})
 
-	var user User
-	var users []User
+	var user model.User
+	var users []model.User
 
 	fmt.Println("user元素");
 	db.Find(&users);
