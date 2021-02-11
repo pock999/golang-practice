@@ -12,7 +12,16 @@ import (
 	"app/model"
 )
 
-var db *gorm.DB
+type Models struct{
+	db *gorm.DB
+}
+
+func initModel() {
+	// dbModel := Models{}
+	// db, err := gorm.Open("mysql", "root:1qaz!QAZ@tcp(localhost:3306)/gorm-test?charset=utf8&parseTime=True&loc=Local");
+}
+
+// var db *gorm.DB
 
 func main() {
 	db, err := gorm.Open("mysql", "root:1qaz!QAZ@tcp(localhost:3306)/gorm-test?charset=utf8&parseTime=True&loc=Local")
