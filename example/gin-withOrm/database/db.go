@@ -10,14 +10,14 @@ import (
 	"gin-orm-prac/models"
 )
 
-var db *gorm.DB
+var DB *gorm.DB
 
 func InitModel() {
-	db, err := gorm.Open("mysql", "root:1qaz!QAZ@tcp(localhost:3306)/gorm-todo?charset=utf8&parseTime=True&loc=Local")
+	DB, err := gorm.Open("mysql", "root:1qaz!QAZ@tcp(localhost:3306)/gorm-todo?charset=utf8&parseTime=True&loc=Local")
 	if err != nil {
 		fmt.Println(err);
 	}
-	defer db.Close();
+	defer DB.Close();
 
-	db.AutoMigrate(&models.Todo{})
+	DB.AutoMigrate(&models.Todo{})
 }
